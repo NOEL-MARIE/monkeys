@@ -1,7 +1,6 @@
 // import Image from "next/image";
 import Seo from "./ui/component/seo";
 
-
 export default function Home() {
   return (
     <>
@@ -9,7 +8,6 @@ export default function Home() {
       <main className="w-full h-full ">
         <h1 className="w-full h-screen flex items-center justify-center">
           le titre de ma page est {" => "}
-         
         </h1>
       </main>
     </>
