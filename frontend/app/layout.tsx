@@ -1,10 +1,37 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono,  } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+});
+
+
+
+const TekoLight = localFont({
+  src: "./fonts/Teko-Light.ttf",
+  variable: "--font-Teko-Light",
+  weight: "100 900",
+});
+
+const TekoBold = localFont({
+  src: "./fonts/Teko-Bold.ttf",
+  variable: "--font-Teko-Bold",
+  weight: "100 900",
+})
+
+const TekoMedium = localFont({
+  src: "./fonts/Teko-Medium.ttf",
+  variable: "--font-Teko-Medium",
+  weight: "100 900",
+});
+
+const TekoSemiBold = localFont({
+  src: "./fonts/Teko-SemiBold.ttf",
+  variable: "--font-Teko-SemiBold ",
+  weight: "100 900",
 });
 
 const geistMono = Geist_Mono({
@@ -26,7 +53,7 @@ export default function RootLayout({
     <html lang="fr">
       <title>Monkeys Code For Coders</title>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={` ${TekoMedium.variable} ${TekoLight.variable} ${TekoSemiBold.variable}  ${TekoBold.variable}  ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
       </body>
