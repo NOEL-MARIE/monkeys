@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <Seo title={"monkey coders"} description={"description..."} />
-      <Typography variant="h1">coders monkeys</Typography>
+      <Typography variant_style="display"  component_balises="h1" >coders monkeys</Typography>
     </>
   );
 }
