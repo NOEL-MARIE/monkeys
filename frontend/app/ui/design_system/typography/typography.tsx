@@ -1,4 +1,4 @@
- 
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react";
 import clsx from "clsx";
 
@@ -21,6 +21,7 @@ interface Props {
     | "caption2"
     | "caption3"
     | "caption4";
+
 
   /**
    * Balise HTML utilisée pour le rendu.
@@ -56,46 +57,84 @@ export default function Typography({
   className = "", // Classes CSS supplémentaires par défaut
   children,
 }: Props) {
-  const Element = component_balises; // Associe la balise à utiliser dynamiquement
+  const Element = component_balises; // Balise HTML dynamique
 
-  // Styles de base en fonction du style choisi
-  const baseStyles = {
-    display: "text-6xl",
-    h1: "text-5xl",
-    h2: "text-4xl",
-    h3: "text-3xl",
-    h4: "text-2xl",
-    h5: "text-xl",
-    lead: "text-lg",
-    "body-lg": "text-base",
-    "body-base": "text-sm",
-    "body-sm": "text-xs",
-    caption1: "text-xxs",
-    caption2: "text-xxs",
-    caption3: "text-xs",
-    caption4: "text-sm",
-  };
+  // Détermine les styles de base en fonction de `variant_style`
+   switch (variant_style) {
+    case "display":
+      baseStyle = "text-6xl";
+      break;
+    case "h1":
+      baseStyle = "text-5xl";
+      break;
+    case "h2":
+      baseStyle = "text-4xl";
+      break;
+    case "h3":
+      baseStyle = "text-3xl";
+      break;
+    case "h4":
+      baseStyle = "text-2xl";
+      break;
+    case "h5":
+      baseStyle = "text-xl";
+      break;
+    case "lead":
+      baseStyle = "text-lg";
+      break;
+    case "body-lg":
+      baseStyle = "text-base";
+      break;
+    case "body-base":
+      baseStyle = "text-sm";
+      break;
+    case "body-sm":
+      baseStyle = "text-xs";
+      break;
+    case "caption1":
+      baseStyle = "text-xxs";
+      break;
+    case "caption2":
+      baseStyle = "text-xxs";
+      break;
+    case "caption3":
+      baseStyle = "text-xs";
+      break;
+    case "caption4":
+      baseStyle = "text-sm";
+      break;
+    default:
+      baseStyle = "text-3xl"; // Fallback en cas de valeur inattendue
+  }
 
-  // Styles de thème en fonction de la couleur choisie
-  const themeStyles = {
-    black: "text-black",
-    white: "bg-white text-black",
-    gray: "text-gray-700",
-    primary: "text-blue-500",
-    secondary: "text-purple-500",
-  };
+  // Détermine les styles de couleur en fonction de `theme_couleur`
+  let themeStyle = "";
+  switch (theme_couleur) {
+    case "black":
+      themeStyle = "text-black";
+      break;
+    case "white":
+      themeStyle = "bg-white text-black";
+      break;
+    case "gray":
+      themeStyle = "text-gray-700";
+      break;
+    case "primary":
+      themeStyle = "text-blue-500";
+      break;
+    case "secondary":
+      themeStyle = "text-purple-500";
+      break;
+    default:
+      themeStyle = "text-black"; // Fallback
+  }
 
-  // Gestion du poids de la police
-  const weightStyles = weight === "medium" ? "font-medium" : "";
+  // Détermine le style de poids en fonction de `weight`
+  const weightStyle = weight === "medium" ? "font-medium" : "";
 
-  // Génère les classes CSS combinées dynamiquement
-  const mon_style = clsx(
-    baseStyles[variant_style], // Taille et style de texte
-    themeStyles[theme_couleur], // Couleur
-    weightStyles, // Poids de la police
-    className // Classes personnalisées ajoutées par l'utilisateur
-  );
+  // Combine toutes les classes en une seule chaîne
+  const mon_style = clsx(baseStyle, themeStyle, weightStyle, className);
 
-  // Rendu final avec les styles et la balise choisis
+  // Rendu final
   return <Element className={mon_style}>{children}</Element>;
 }

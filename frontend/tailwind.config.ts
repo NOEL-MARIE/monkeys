@@ -9,6 +9,46 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}", // Fichiers du dossier principal "app"
   ],
   theme: {
+    // Configuration des couleurs personnalisées
+
+    colors: {
+      green: {
+        "lightest": "#D1FAE5",  // Ton vert très clair
+        "lighter": "#86EFAC",   // Ton vert clair
+        "default": "#22C55E",   // Ton vert moyen
+        "darker": "#16A34A",    // Ton vert foncé
+        "darkest": "#064E3B",   // Ton vert très foncé
+      },
+      blue: {
+        "lightest": "#DBEAFE",  // Ton bleu très clair
+        "lighter": "#60A5FA",   // Ton bleu clair
+        "default": "#3B82F6",   // Ton bleu moyen
+        "darker": "#2563EB",    // Ton bleu foncé
+        "darkest": "#1E3A8A",   // Ton bleu très foncé
+      },
+      gray: {
+        "lightest": "#F3F4F6",  // Ton gris très clair
+        "lighter": "#D1D5DB",   // Ton gris clair
+        "default": "#6B7280",   // Ton gris moyen
+        "darker": "#374151",    // Ton gris foncé
+        "darkest": "#111827",   // Ton gris très foncé
+      },
+      red: {
+        "lightest": "#FEE2E2",  // Ton rouge très clair
+        "lighter": "#FCA5A5",   // Ton rouge clair
+        "default": "#F87171",   // Ton rouge moyen
+        "darker": "#DC2626",    // Ton rouge foncé
+        "darkest": "#7F1D1D",   // Ton rouge très foncé
+      },
+      violet: {
+        "lightest": "#EDE9FE",  // Ton violet très clair
+        "lighter": "#C4B5FD",   // Ton violet clair
+        "default": "#8B5CF6",   // Ton violet moyen
+        "darker": "#6D28D9",    // Ton violet foncé
+        "darkest": "#4C1D95",   // Ton violet très foncé
+      },
+    },
+
     // Configuration des tailles de polices personnalisées
     fontSize: {
       // Taille très grande pour un texte principal ou affichage en vedette
