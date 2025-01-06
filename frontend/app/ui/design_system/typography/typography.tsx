@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react";
 import clsx from "clsx";
 
@@ -21,7 +20,6 @@ interface Props {
     | "caption2"
     | "caption3"
     | "caption4";
-
 
   /**
    * Balise HTML utilisée pour le rendu.
@@ -58,9 +56,12 @@ export default function Typography({
   children,
 }: Props) {
   const Element = component_balises; // Balise HTML dynamique
+  
+  // Déclaration de baseStyle avant l'utilisation dans le switch
+  let baseStyle = "";
 
   // Détermine les styles de base en fonction de `variant_style`
-   switch (variant_style) {
+  switch (variant_style) {
     case "display":
       baseStyle = "text-6xl";
       break;
