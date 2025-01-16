@@ -1,52 +1,81 @@
+"use client";
 import { RiUser6Fill } from "react-icons/ri";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import Seo from "./ui/component/seo"; // Composant pour gérer le SEO (titre et description des pages)
 import { Button } from "./ui/design_system/Button/button";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import Typography from "./ui/design_system/typography/typography"; // Composant de typographie pour le design système
+import { Spinner } from "./ui/design_system/spinner/spinner";
 
 // Composant principal de la page d'accueil
 export default function Home() {
   return (
     <>
       <Seo title="Monkey Coders" description="Description..." />
-
+      <Spinner size="small" />
+      <Spinner />
+      <Spinner size="large" />
       <div className=" flex items-center gap-x-3 p-9">
-        <Button size="small" variant="accent">
+        <Button
+          size="small"
+          icon={{ icon: RiUser6Fill }}
+          iconPosition="left"
+          variant="accent"
+        >
           accent
         </Button>
         <Button size="small" variant="secondary">
-          accent
+          secondary
         </Button>
         <Button size="small" variant="outline">
-          accent
+          outline
         </Button>
         <Button size="small" variant="disable" disabled>
-          accent
+          disable
         </Button>
+        <Button variant="ico" size="small" icon={{ icon: RiUser6Fill }} />
       </div>
       <div className=" flex items-center gap-x-3 p-9">
-        <Button variant="accent"> accent </Button>
-        <Button variant="secondary"> accent </Button>
-        <Button variant="outline"> accent </Button>
-        <Button variant="disable" disabled>
+        <Button size="medium" variant="accent">
           accent
         </Button>
-        <Button variant="ico" size="small" icon={{ icon: function RiUser6Fill }} />
+        <Button size="medium" variant="secondary">
+          secondary
+        </Button>
+        <Button size="medium" variant="outline">
+          outline
+        </Button>
+        <Button size="medium" variant="disable" disabled>
+          disable
+        </Button>
+        <Button variant="ico" size="medium" icon={{ icon: RiUser6Fill }} />
       </div>
       <div className=" flex items-center gap-x-3 p-9">
-        <Button size="large" variant="accent">
+        <Button size="large" variant="accent" icon={{ icon: RiUser6Fill }}>
           accent
         </Button>
         <Button size="large" variant="secondary">
-          accent
+          secondary
         </Button>
         <Button size="large" variant="outline">
-          accent
+          outline
         </Button>
         <Button size="large" variant="disable" disabled>
-          accent
+          disable
         </Button>
+        <Button
+          variant="ico"
+          size="large"
+          iconTheme="secondary"
+          icon={{ icon: RiUser6Fill }}
+        />
+        <Button
+          variant="ico"
+          iconTheme="gray"
+          size="large"
+          icon={{ icon: RiUser6Fill }}
+        />
+        <Button variant="ico" size="large" icon={{ icon: RiUser6Fill }} />
       </div>
       {/* Composant SEO : Définit le titre et la description de la page
       

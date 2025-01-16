@@ -1,10 +1,12 @@
 "use client";
 
+import { IconProps } from "@/types/iconProps";
 import clsx from "clsx";
+import { RiUser6Fill } from "react-icons/ri";
 
 interface Props {
   size?: "small" | "medium" | "large";
-  icon?: unknown;
+  icon?: IconProps;
   iconTheme?: "accent" | "secondary" | "gray";
   iconPosition?: "left" | "right";
   disabled?: boolean;
@@ -45,7 +47,9 @@ export const Button = ({
       break;
     case "ico":
       if (iconTheme === "accent") {
-        variantStyle = "bg-primary hover:bg-primary-400 rounded-full";
+        //Default
+        variantStyle =
+          "bg-primary hover:bg-primary-400 text-white rounded-full";
       }
       if (iconTheme === "secondary") {
         variantStyle =
@@ -59,16 +63,33 @@ export const Button = ({
 
   switch (size) {
     case "small":
-      sizeStyle = "text-caption3 font-medium px-[14px] py-[12px]";
+      sizeStyle = `text-caption3 font-medium ${
+        variant === "ico"
+          ? "flex justify-center items-center w-[40px] h-[40px]"
+          : "px-[14px] py-[12px]"
+      } `;
+      icoSize = 18;
       break;
     case "medium":
-      sizeStyle = "text-caption2 font-medium px-[18px] py-[15px]";
+      sizeStyle = `text-caption2 font-medium ${
+        variant === "ico"
+          ? "flex justify-center items-center w-[50px] h-[50px]"
+          : "px-[18px] py-[15px]"
+      }`;
+      icoSize = 20;
+
       break;
     case "large":
-      sizeStyle = "text-caption1 font-medium px-[22px] py-[18px]";
+      sizeStyle = `text-caption1 font-medium ${
+        variant === "ico"
+          ? "flex justify-center items-center w-[60px] h-[60px]"
+          : "px-[22px] py-[18px]"
+      }`;
+      icoSize = 24;
+
       break;
   }
-  console.log(icon);
+
   return (
     <button
       type="button"
@@ -77,11 +98,13 @@ export const Button = ({
       disabled={disabled}
     >
       {icon && variant === "ico" ? (
-        <>
-          <icon.icon Size={icoSize} />
-        </>
+        <icon.icon size={icoSize} />
       ) : (
-        <>{children}</>
+        <div className={clsx(icon && " flex items-center gap-1")}>
+          {icon && iconPosition === "left" && <icon.icon size={icoSize} />}
+          {children}
+          {icon && iconPosition === "right" && <icon.icon size={icoSize} />}
+        </div>
       )}
     </button>
   );
