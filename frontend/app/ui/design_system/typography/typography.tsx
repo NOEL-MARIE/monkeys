@@ -56,7 +56,7 @@ export default function Typography({
   children,
 }: Props) {
   const Element = component_balises; // Balise HTML dynamique
-  
+
   // Déclaration de baseStyle avant l'utilisation dans le switch
   let baseStyle = "";
 
@@ -115,27 +115,37 @@ export default function Typography({
       themeStyle = "text-black";
       break;
     case "white":
-      themeStyle = "bg-white text-black";
+      themeStyle = "text-white ";
       break;
     case "gray":
-      themeStyle = "text-gray-700";
+      themeStyle = "text-gray";
       break;
     case "primary":
-      themeStyle = "text-blue-500";
+      themeStyle = "text-primary";
       break;
     case "secondary":
-      themeStyle = "text-purple-500";
+      themeStyle = "text-secondary";
       break;
     default:
-      themeStyle = "text-black"; // Fallback
+      themeStyle = "text-5xl"; // Fallback
   }
 
   // Détermine le style de poids en fonction de `weight`
-  const weightStyle = weight === "medium" ? "font-medium" : "";
-
-  // Combine toutes les classes en une seule chaîne
-  const mon_style = clsx(baseStyle, themeStyle, weightStyle, className);
 
   // Rendu final
-  return <Element className={mon_style}>{children}</Element>;
+
+  return (
+    <Element
+      className={clsx(
+        baseStyle,
+        themeStyle,
+        weight === "medium" && "font-semibold",
+        className,
+        "text-8xl text-primary"
+      )}
+    >
+      {" "}
+      {children}
+    </Element>
+  );
 }
