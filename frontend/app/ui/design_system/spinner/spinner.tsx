@@ -25,7 +25,7 @@ export const Spinner = ({ size = "medium", variant = "primary" }: Props) => {
 
   switch (variant) {
     case "primary": // Default
-      variant_style = "text-blue-500"; // Exemple de style pour primary
+      variant_style = "text-primary"; // Exemple de style pour primary
       break;
     case "white":
       variant_style = "text-white"; // Exemple de style pour white

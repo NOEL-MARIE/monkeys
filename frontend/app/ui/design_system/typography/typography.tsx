@@ -1,10 +1,10 @@
 import React from "react";
 import clsx from "clsx";
+import { Spinner } from "../spinner/spinner";
+import { Logo } from "../Logo/logo";
+import { Avatar } from "../Avatar/Avatar";
 
 interface Props {
-  /**
-   * Détermine le style à appliquer (taille de texte, etc.).
-   */
   variant_style?:
     | "display"
     | "h1"
@@ -21,46 +21,29 @@ interface Props {
     | "caption3"
     | "caption4";
 
-  /**
-   * Balise HTML utilisée pour le rendu.
-   */
   component_balises?: "h1" | "h2" | "h3" | "h4" | "h5" | "div" | "p" | "span";
 
-  /**
-   * Détermine la couleur du texte.
-   */
   theme_couleur?: "black" | "white" | "gray" | "primary" | "secondary";
 
-  /**
-   * Définit le poids de la police.
-   */
   weight?: "regular" | "medium";
 
-  /**
-   * Ajoute des classes CSS personnalisées.
-   */
   className?: string;
 
-  /**
-   * Contenu enfant à afficher.
-   */
   children: React.ReactNode;
 }
 
 export default function Typography({
-  variant_style = "h3", // Valeur par défaut pour le style
-  component_balises = "div", // Balise HTML par défaut
-  theme_couleur = "black", // Couleur par défaut
-  weight = "regular", // Poids par défaut
-  className = "", // Classes CSS supplémentaires par défaut
+  variant_style = "h3",
+  component_balises = "div",
+  theme_couleur = "black",
+  weight = "regular",
+  className = "",
   children,
 }: Props) {
-  const Element = component_balises; // Balise HTML dynamique
+  const Element = component_balises;
 
-  // Déclaration de baseStyle avant l'utilisation dans le switch
   let baseStyle = "";
 
-  // Détermine les styles de base en fonction de `variant_style`
   switch (variant_style) {
     case "display":
       baseStyle = "text-6xl";
@@ -105,17 +88,16 @@ export default function Typography({
       baseStyle = "text-sm";
       break;
     default:
-      baseStyle = "text-3xl"; // Fallback en cas de valeur inattendue
+      baseStyle = "text-3xl";
   }
 
-  // Détermine les styles de couleur en fonction de `theme_couleur`
   let themeStyle = "";
   switch (theme_couleur) {
     case "black":
       themeStyle = "text-black";
       break;
     case "white":
-      themeStyle = "text-white ";
+      themeStyle = "text-white";
       break;
     case "gray":
       themeStyle = "text-gray";
@@ -127,25 +109,59 @@ export default function Typography({
       themeStyle = "text-secondary";
       break;
     default:
-      themeStyle = "text-5xl"; // Fallback
+      themeStyle = "text-5xl";
   }
 
-  // Détermine le style de poids en fonction de `weight`
-
-  // Rendu final
-
   return (
-    <Element
-      className={clsx(
-        baseStyle,
-        themeStyle,
-        weight === "medium" && "font-semibold",
-        className,
-        "text-8xl text-primary"
-      )}
-    >
-      {" "}
-      {children}
-    </Element>
+    <>
+      <div className="flex items-start gap-7">
+        <div className="space-y-2">
+          <Element
+            className={clsx(
+              baseStyle,
+              themeStyle,
+              weight === "medium" && "font-semibold",
+              className
+            )}
+          >
+            {children}
+          </Element>
+        </div>
+
+        <div className="space-y-2">
+          <Typography variant_style="display" weight="medium">
+            Spinner
+          </Typography>
+          <div className="flex items-center gap-2 p-2 border border-gray-400 rounded max-w-6xl mx-auto space-y-5">
+            <Spinner size="small" />
+            <Spinner />
+            <Spinner size="large" />
+          </div>
+        </div>
+
+        <div className="space-y-2">
+          <Typography variant_style="caption1" weight="medium">
+            Logo
+          </Typography>
+          <div className="flex items-center gap-2 p-2 border border-gray-400 rounded">
+            <Logo size="very-small" />
+            <Logo size="small" />
+            <Logo />
+            <Logo size="large" />
+          </div>
+        </div>
+
+        <div className="space-y-2">
+          <Typography variant_style="caption3" weight="medium">
+            Avatar
+          </Typography>
+          <div className="flex items-center gap-2 p-2 border border-gray-400 rounded">
+            <Avatar size="small" src="/asset/jesus.jpg" alt="jesus avatar" />
+            <Avatar src="/asset/jesus.jpg" alt="jesus avatar" />
+            <Avatar size="large" src="/asset/jesus.jpg" alt="jesus avatar" />
+          </div>
+        </div>
+      </div>
+    </>
   );
 }

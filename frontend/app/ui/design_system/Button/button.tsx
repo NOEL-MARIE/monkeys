@@ -2,7 +2,7 @@
 
 import { IconProps } from "@/types/iconProps";
 import clsx from "clsx";
-import { RiUser6Fill } from "react-icons/ri";
+import { Spinner } from "../spinner/spinner";
 
 interface Props {
   size?: "small" | "medium" | "large";
@@ -27,11 +27,10 @@ export const Button = ({
 }: Props) => {
   let variantStyle: string = "",
     sizeStyle: string = "",
-    // eslint-disable-next-line prefer-const
     icoSize: number = 0;
   switch (variant) {
     case "accent":
-      variantStyle = "bg-primary hover:bg-primary-400 rounded";
+      variantStyle = "bg-primary hover:bg-primary-400 text-white rounded";
       break;
     case "secondary":
       variantStyle =
@@ -62,7 +61,7 @@ export const Button = ({
   }
 
   switch (size) {
-    case "small":
+    case "small": //Default
       sizeStyle = `text-caption3 font-medium ${
         variant === "ico"
           ? "flex justify-center items-center w-[40px] h-[40px]"
@@ -93,19 +92,36 @@ export const Button = ({
   return (
     <button
       type="button"
-      className={clsx(variantStyle, sizeStyle, icoSize)}
+      className={clsx(
+        variantStyle,
+        sizeStyle,
+        icoSize,
+        isLoading && "cursor-wait",
+        "relative"
+      )}
       onClick={() => alert("click")}
       disabled={disabled}
     >
-      {icon && variant === "ico" ? (
-        <icon.icon size={icoSize} />
-      ) : (
-        <div className={clsx(icon && " flex items-center gap-1")}>
-          {icon && iconPosition === "left" && <icon.icon size={icoSize} />}
-          {children}
-          {icon && iconPosition === "right" && <icon.icon size={icoSize} />}
+      {isLoading && (
+        <div className=" absolute inset-0 flex items-center justify-center">
+          {variant === "accent" || variant === "ico" || iconTheme === "secondary" ? (
+            <Spinner size="small" variant="white" />
+          ) : (
+            <Spinner size="small" />
+          )}
         </div>
       )}
+      <div className={clsx(isLoading && "invisible")}>
+        {icon && variant === "ico" ? (
+          <icon.icon size={icoSize} />
+        ) : (
+          <div className={clsx(icon && " flex items-center gap-1")}>
+            {icon && iconPosition === "left" && <icon.icon size={icoSize} />}
+            {children}
+            {icon && iconPosition === "right" && <icon.icon size={icoSize} />}
+          </div>
+        )}
+      </div>
     </button>
   );
 };
