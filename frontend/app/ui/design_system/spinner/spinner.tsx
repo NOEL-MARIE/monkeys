@@ -4,7 +4,7 @@ interface Props {
   size?: "small" | "medium" | "large";
   variant?: "primary" | "white";
 }
-
+  // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 export const Spinner = ({ size = "medium", variant = "primary" }: Props) => {
   let variant_style: string = "",
     size_Style: string = "";
